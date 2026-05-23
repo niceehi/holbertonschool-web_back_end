@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Function that generate a list of tuples containing elements and their lengths
-"""
+
 from typing import List, Tuple, Iterable, Sequence
 
 

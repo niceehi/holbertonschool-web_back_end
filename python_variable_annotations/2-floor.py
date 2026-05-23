@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-function that return the floor of a float (return a int)
-"""
+
 import math
 
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-module witch async_comprehension function
+Module containing the async_comprehension coroutine.
 """
 from typing import List
 
@@ -9,10 +9,12 @@ async_generator = __import__('0-async_generator').async_generator
 
 async def async_comprehension() -> List[float]:
     """
-    async_comprehension
+    Collect all values produced by async_generator using
+    an asynchronous comprehension.
 
-    This asynchronous function collects values from an asynchronous generator
-    using an asynchronous comprehension.
+    Returns:
+        List[float]: A list of floating-point numbers generated
+        by async_generator.
     """
     results = [item async for item in async_generator()]
     return results

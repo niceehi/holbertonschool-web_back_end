@@ -41,15 +41,7 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
-        Returns a deletion-resilient page of the dataset.
 
-        Args:
-            index (int): Starting index. Defaults to 0.
-            page_size (int): Number of items per page. Defaults to 10.
-
-        Returns:
-            Dict[str, Any]: page data including index,
-            next_index, page_size and data
         """
 
         # Set default index to 0 if None

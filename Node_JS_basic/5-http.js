@@ -1,40 +1,43 @@
 const http = require('http');
 const countStudents = require('./3-read_file_async');
 
-const databasePath = process.argv[2];
+const database = process.argv[2];
 
 const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
+    return;
   }
+
   if (req.url === '/students') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.write('This is the list of our students\n');
 
-    // save log to restore later
     const originalLog = console.log;
-
-    // empty string to catch logs
     let output = '';
 
-    // temmporary log to catcht logs message and build answer
-    console.log = (message) => { output += `${message}\n`; };
+    console.log = (message) => {
+      output += `${message}\n`;
+    };
 
-    countStudents(databasePath)
-      // restore original log and show answer
+    countStudents(database)
       .then(() => {
         console.log = originalLog;
-        res.write(output.trim());
-        res.end();
+        res.end(output.trim());
       })
       .catch(() => {
-        // restore original log and error message
         console.log = originalLog;
         res.end('Cannot load the database');
       });
+
+    return;
   }
+
+  res.writeHead(404, { 'Content-Type': 'text/plain' });
+  res.end('Not Found');
 });
+
 app.listen(1245);
 
 module.exports = app;
